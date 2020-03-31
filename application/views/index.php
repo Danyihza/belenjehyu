@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Free Education Template by Colorlib</title>
+	<title>BelenjehYu</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -19,7 +19,6 @@
 
 	<!-- Theme Style -->
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style.css">
-	<!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/card.css"> -->
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/mycard.css">
 </head>
 
@@ -29,7 +28,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand absolute" href="<?= base_url('main'); ?>">University</a>
+				<a class="navbar-brand absolute" href="<?= base_url('main'); ?>">Belenjehyu</a>
 
 
 			</div>
