@@ -54,7 +54,7 @@
 										<select name="kategori" id="" class="form-control">
 											<option selected disabled>Pilih Kategori...</option>
 											<?php foreach ($kategori as $k) : ?>
-											<option value="<?= $k['nama_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
+												<option value="<?= $k['nama_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -70,21 +70,21 @@
 	</section>
 	<!-- END section -->
 
-<?php 
-foreach ($user as $u) :
-?>
-	<div class="card">
-		<div class="warna">
-			<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
-		<div class="tengah">
-			<h3><?= $u['nama_pedagang']; ?></h3>
-			<p><?= $u['kontak_pedagang']; ?></p>
+	<?php
+	foreach ($user as $u) :
+	?>
+		<div class="card">
+			<div class="warna">
+				<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
+			<div class="tengah">
+				<h3><?= $u['nama_pedagang']; ?></h3>
+				<a href="tel:<?= $u['kontak_pedagang']?>"><p><?= $u['kontak_pedagang']; ?></p></a>
+			</div>
+			<div class="kanan">
+				<a href="https://wa.me/62<?= $u['kontak_pedagang']?>?text=Halo+<?=$u['nama_pedagang']?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
+			</div>
 		</div>
-		<div class="kanan">
-			<a href="wa.me/"></a><img class="whatsapp"src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px">
-		</div>
-	</div>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 
 
 

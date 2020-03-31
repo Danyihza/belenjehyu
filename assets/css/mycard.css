@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
-h3 {
-	font-size: 18px;
+.tengah h3 {
+    font-size: 18px;
+    margin-top: 23px;
+    margin-bottom: -2px;
 }
 
 p {
@@ -24,10 +26,15 @@ p {
     width: 30%;
 }
 
+img.whatsapp {
+    display: block;
+    margin-top: 0;
+}
+
 img.daging {
     display: block;
     margin: auto;
-    margin-top: auto;
+    margin-top: 24px;
 }
 
 
@@ -40,6 +47,7 @@ img.daging {
 
 .kanan {
 	width: 20%;
-	background-color: white;
+    background-color: white;
+    margin: auto;
 	padding: 10px;
 }
