@@ -19,7 +19,8 @@
 
 	<!-- Theme Style -->
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style.css">
-	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/card.css">
+	<!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/card.css"> -->
+	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/mycard.css">
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand absolute" href="index.html">University</a>
+				<a class="navbar-brand absolute" href="<?= base_url('main'); ?>">University</a>
 
 
 			</div>
@@ -45,30 +46,20 @@
 					<div class="mb-5 element-animate">
 						<div class="block-17">
 							<h2 class="heading text-center mb-4">Find Oneline Courses That Suits You</h2>
-							<form action="" method="post" class="d-block d-lg-flex mb-4">
+							<form action="<?= base_url('main/cari'); ?>" method="get" class="d-block d-lg-flex mb-4">
 								<div class="fields d-block d-lg-flex">
-									<div class="textfield-search one-third"><input type="text" class="form-control" placeholder="Keyword search..."></div>
+									<div class="textfield-search one-third"><input type="text" class="form-control" name="search" placeholder="Cari nama pedagang disini..."></div>
 									<div class="select-wrap one-third">
 										<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-										<select name="" id="" class="form-control">
-											<option value="">Category Course</option>
-											<option value="">Laravel</option>
-											<option value="">PHP</option>
-											<option value="">JavaScript</option>
-											<option value="">Python</option>
-										</select>
-									</div>
-									<div class="select-wrap one-third">
-										<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-										<select name="" id="" class="form-control">
-											<option value="">Difficulty</option>
-											<option value="">Beginner</option>
-											<option value="">Intermediate</option>
-											<option value="">Advance</option>
+										<select name="kategori" id="" class="form-control">
+											<option selected disabled>Pilih Kategori...</option>
+											<?php foreach ($kategori as $k) : ?>
+											<option value="<?= $k['nama_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
+											<?php endforeach; ?>
 										</select>
 									</div>
 								</div>
-								<input type="submit" class="search-submit btn btn-primary" value="Search">
+								<input type="submit" class="search-submit btn btn-primary" value="Cari">
 							</form>
 						</div>
 					</div>
@@ -79,72 +70,24 @@
 	</section>
 	<!-- END section -->
 
-	<section class="site-section element-animate">
-
-
-		<div class="card green">
-			<div class="row">
-				<div class="additional col-md-3">
-					<img src="<?= base_url('assets/');?>images/daging.png" alt="">
-
-				</div>
-				<div class="general col-md-6">
-					<h3>Sumber Abadi</h3>
-					<p>082331147549</p>
-				</div>
-				<div class="general col-md-3">
-					<a href="https://wa.me/6281335373470?text=Saya%20tertarik%20dengan%20mobil%20Anda%20yang%20dijual"><img src="<?= base_url('assets/'); ?>images/whatsapp.png" class="whatsapp" width="80px"></a>
-				</div>
-			</div>
+<?php 
+foreach ($user as $u) :
+?>
+	<div class="card">
+		<div class="warna">
+			<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
+		<div class="tengah">
+			<h3><?= $u['nama_pedagang']; ?></h3>
+			<p><?= $u['kontak_pedagang']; ?></p>
 		</div>
-
-		<div class="card green">
-			<div class="additional">
-				<div class="user-card">
-
-				</div>
-				<div class="more-info">
-					<h1>Jane Doe</h1>
-					<div class="coords">
-						<span>Group Name</span>
-						<span>Joined January 2019</span>
-					</div>
-					<div class="coords">
-						<span>Position/Role</span>
-						<span>City, Country</span>
-					</div>
-					<div class="stats">
-						<div>
-							<div class="title">Awards</div>
-							<i class="fa fa-trophy"></i>
-							<div class="value">2</div>
-						</div>
-						<div>
-							<div class="title">Matches</div>
-							<i class="fa fa-gamepad"></i>
-							<div class="value">27</div>
-						</div>
-						<div>
-							<div class="title">Pals</div>
-							<i class="fa fa-group"></i>
-							<div class="value">123</div>
-						</div>
-						<div>
-							<div class="title">Coffee</div>
-							<i class="fa fa-coffee"></i>
-							<div class="value infinity">∞</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="general">
-				<p>Jane Doe</p>
-			</div>
+		<div class="kanan">
+			<a href="wa.me/"></a><img class="whatsapp"src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px">
 		</div>
+	</div>
+<?php endforeach; ?>
 
-		</div>
 
-	</section>
+
 	<!-- END section -->
 
 
