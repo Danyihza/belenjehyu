@@ -47,7 +47,10 @@
                     <td><?= $su['tempat_pasar']; ?></td>
                     <td>
                         <a href="<?= base_url() ?>admin/detail/<?= $su['id_pedagang'] ?>" class="badge badge-primary">Detail
-                        </a> <a href=" <?= base_url() ?>admin/hapus/<?= $su['id_pedagang'] ?>" class="badge badge-danger" onclick="return confirm('Yakin anda ingin menghapus?');">Hapus
+                        </a>
+                        <a href=" <?= base_url() ?>admin/editdata/<?= $su['id_pedagang'] ?>" class="badge badge-warning">Edit
+                        </a>
+                        <a href=" <?= base_url() ?>admin/hapus/<?= $su['id_pedagang'] ?>" class="badge badge-danger" onclick="return confirm('Yakin anda ingin menghapus?');">Hapus
                         </a>
                     </td>
                 </tr>

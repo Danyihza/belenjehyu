@@ -29,6 +29,18 @@ class admin_model extends CI_Model
     }
     public function getDetailById($id)
     {
-        return $this->db->get_where('pedagang', ['id_pedagang', $id])->row_array();
+        return $this->db->get_where('pedagang', ['id_pedagang' => $id])->row_array();
+    }
+    public function editdataById($id)
+    {
+        return $this->db->get_where('pedagang', ['id_pedagang' => $id])->row_array();
+        $data = [
+            "nama_pedagang" => $this->input->post('nama', true),
+            "kontak_pedagang" => $this->input->post('kontak', true),
+            "tempat_pasar" => $this->input->post('tempat', true),
+            "kategori" => $this->input->post('kategori'),
+
+        ];
+        $this->db->update('pedagang', $data);
     }
 }

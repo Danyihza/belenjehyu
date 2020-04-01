@@ -6,10 +6,10 @@
                 <h2>Pedagang</h2>
             </div>
             <div class="card-body">
-                <h5 class="card-title"><?= $pedagang['nama_pedagang']; ?> </h5>
+                <h5 class="card-title"><?= $pedagang['nama_pedagang']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted ">
                     <div> <img class="whatsapp" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px">
-                        <a><?= $pedagang['kontak_pedagang'] ?></a>
+                        <a><?= $pedagang['kontak_pedagang']; ?></a>
                     </div>
                 </h6> <br>
                 <p class=" card-text mt-3">
