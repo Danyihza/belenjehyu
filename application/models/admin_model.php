@@ -27,4 +27,8 @@ class admin_model extends CI_Model
         $this->db->where('id_pedagang', $id);
         $this->db->delete('pedagang');
     }
+    public function getDetailById($id)
+    {
+        return $this->db->get_where('pedagang', ['id_pedagang', $id])->row_array();
+    }
 }

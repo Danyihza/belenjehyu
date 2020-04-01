@@ -37,6 +37,16 @@ class admin extends CI_Controller
             redirect('admin');
         }
     }
+    public function detail($id)
+    {
+        $data['judul'] = 'Detail Data Pedagang';
+        $data['pedagang'] = $this->admin_model->getDetailById($id);
+        $this->load->view('vendor/header', $data);
+        $this->load->view('vendor/sidebar');
+        $this->load->view('vendor/topbar');
+        $this->load->view('admin/detail');
+        $this->load->view('vendor/footer');
+    }
     public function hapus($id)
     {
         $this->admin_model->hapusdata($id);
