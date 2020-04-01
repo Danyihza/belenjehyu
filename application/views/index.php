@@ -26,7 +26,7 @@
 
 	<header role="banner">
 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container">
 				<a class="navbar-brand absolute" href="<?= base_url('main'); ?>">Belenjehyu</a>
 
@@ -68,26 +68,34 @@
 		</div>
 	</section>
 	<!-- END section -->
-	<p class="heading text-center mb-4" style="font-size: 30px;
-  color: white;
-  font-weight: bold;">Hasil Pencarian</p>
+	<!-- <iframe width="300" height="150" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyDaTxK5QF8rmPFs14OG36FomPO1IGKD2rI" allowfullscreen></iframe> -->
+
 	<?php
-	foreach ($user as $u) :
+	if (!$user) {
 	?>
-		<div class="card">
-			<div class="warna">
-				<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
-			<div class="tengah">
-				<h3><?= $u['nama_pedagang']; ?></h3>
-				<a href="tel:<?= $u['kontak_pedagang'] ?>">
-					<p><?= $u['kontak_pedagang']; ?></p>
-				</a>
+		<p class="heading text-center mb-4" style="font-size: 30px;
+			color: white;
+			font-weight: bold;">Data Tidak Ditemukan</p>
+		<?php
+	} else {
+		foreach ($user as $u) :
+		?>
+			
+			<div class="card">
+				<div class="warna">
+					<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
+				<div class="tengah">
+					<h3><?= $u['nama_pedagang']; ?></h3>
+					<a href="tel:<?= $u['kontak_pedagang'] ?>">
+						<p><?= $u['kontak_pedagang']; ?></p>
+					</a>
+				</div>
+				<div class="kanan">
+					<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
+				</div>
 			</div>
-			<div class="kanan">
-				<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
-			</div>
-		</div>
-	<?php endforeach; ?>
+		<?php endforeach; ?>
+	<?php } ?>
 	<hr>
 	<footer class="site-footer">
 		<div class="container">

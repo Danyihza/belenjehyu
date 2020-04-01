@@ -22,5 +22,6 @@ class Main extends CI_Controller
 		$data['user'] = $this->Cari->cari($search, $kategori);
 
 		$this->load->view('index', $data);
+		$this->session->set_flashdata('flash','Daftar Pedangang');
 	}
 }

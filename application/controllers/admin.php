@@ -9,7 +9,26 @@ class admin extends CI_Controller
         parent::__construct();
         $this->load->model('admin_model');
     }
+
     public function index()
+    {
+        $uname = $this->input->post('uname');
+        $pwd = $this->input->post('pwd');
+
+        $user = $this->db->query("SELECT * FROM admin WHERE username ='$uname'")->row_array();
+        if ($user) {
+            if ($this->db->query("SELECT * FROM admin WHERE password ='$pwd'")->row_array()) {
+                $data = $user['username'];
+                $this->session->set_userdata('nama',$data);
+                redirect('admin/mainmenu');
+            }else{
+                redirect('admin');
+            }
+        }
+        $this->load->view('admin/auth');
+    }
+
+    public function mainmenu()
     {
         $data['judul'] = 'BelenjehYu';
         $data['pedagang'] = $this->admin_model->getAllPedagang();
@@ -19,6 +38,7 @@ class admin extends CI_Controller
         $this->load->view('admin/index');
         $this->load->view('vendor/footer');
     }
+
     public function tambah()
     {
         $data['judul'] = 'BelenjehYu';

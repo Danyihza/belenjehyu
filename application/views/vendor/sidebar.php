@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin/mainmenu'); ?>">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-bag">
             </i>
@@ -18,7 +18,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('admin'); ?>">
+        <a class="nav-link" href="<?= base_url('admin/mainmenu'); ?>">
             <i class="fas fa-home"></i>
             <span>Home</span></a>
     </li>

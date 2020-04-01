@@ -31,6 +31,7 @@
                     <th scope="col">Nama</th>
                     <th scope="col">Kontak</th>
                     <th scope="col">Tempat</th>
+                    <th scope="col">Kategori</th>
                     <th scope="col">Action</th>
                 </tr>
         </thead>
@@ -45,6 +46,7 @@
                     <td><?= $su['nama_pedagang']; ?></td>
                     <td><?= $su['kontak_pedagang']; ?></td>
                     <td><?= $su['tempat_pasar']; ?></td>
+                    <td><?= $su['nama_kategori']; ?></td>
                     <td>
                         <a href="<?= base_url() ?>admin/hapus/<?= $su['id_pedagang'] ?>" class="badge badge-danger" onclick="return confirm('Yakin anda ingin menghapus?');">Hapus</a>
                     </td>

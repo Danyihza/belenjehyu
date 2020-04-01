@@ -5,7 +5,9 @@ class admin_model extends CI_Model
 {
     public function getAllPedagang()
     {
-        return $this->db->get('pedagang')->result_array();
+        $hasil = $this->db->query('SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori ORDER BY nama_kategori');
+        return $hasil->result_array();
+        // return $this->db->get('pedagang')->result_array();
     }
     public function getAllKategori()
     {
