@@ -7,7 +7,7 @@
             <i class="fas fa-shopping-bag">
             </i>
         </div>
-        <div class="sidebar-brand-text mx-3">BELENJEHY</div>
+        <div class="sidebar-brand-text mx-3">BELENJEHYU</div>
     </a>
 
     <!-- Divider -->
