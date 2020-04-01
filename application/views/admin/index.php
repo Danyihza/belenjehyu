@@ -1,6 +1,6 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <div class="row mt-3">
+    <div class="row mt-3 ">
         <div class="col-md-6">
             <?php if ($this->session->flashdata('flash')) {
             ?> <div class="alert alert-success alert-dismissible fade show" role="alert">
