@@ -15,7 +15,7 @@
                 <p class=" card-text mt-3">
                     <?= $pedagang['tempat_pasar']; ?>
                 </p>
-                <a href="<?= base_url('admin') ?>" class="btn btn-primary float-right">Back</a>
+                <a href="<?= base_url('admin/mainmenu') ?>" class="btn btn-primary float-right">Back</a>
             </div>
         </div>
     </div>

@@ -6,40 +6,36 @@
                     Edit Data
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
-                        <div class="form-group">
+                    <form action="<?= base_url() ?>admin/update/<?= $qpedagang['id_pedagang'] ?>" method="post">
+                       <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" name="nama" value="<?= $pedagang['nama_pedagang']; ?>">
-
+                            <input type="text" class="form-control" name="nama" value="<?= $qpedagang['nama_pedagang']; ?>">
                             <small class="form-text text-danger" <?= form_error('nama'); ?>></small>
                         </div>
                         <div class=" form-group">
                             <label for="kontak">Kontak</label>
-                            <input type="text" class="form-control" name="kontak" value="<?= $pedagang['kontak_pedagang']; ?>">
+                            <input type="text" class="form-control" name="kontak" value="<?= $qpedagang['kontak_pedagang']; ?>">
                             <small class=" form-text text-danger">
                                 <?= form_error('kontak'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="tempat">Tempat</label>
-                            <input type="text" class="form-control" name="tempat" value="<?= $pedagang['tempat_pasar']; ?>">
+                            <input type="text" class="form-control" name="tempat" value="<?= $qpedagang['tempat_pasar'];; ?>">
                             <small class=" form-text text-danger ">
                                 <?= form_error('tempat'); ?></small></div>
                         <div class=" form-group">
                             <label for="kategori">Kategori</label>
                             <select class="form-control" name="kategori" name="kategori">
-                                <option></option>
+                                <option value="<?= $qpedagang['id_kategori']; ?>"><?= $qpedagang['nama_kategori']; ?></option>
                                 <?php
                                 foreach ($kategori as $su) :
                                 ?>
-                                    <option value="<?= $su['name_kategori'] ?>">
-                                        <?= $su['nama_kategori'] ?>
-                                    </option>
+                                    <option value="<?= $su['id_kategori'] ?>"><?= $su['nama_kategori'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
                         <button type="submit" name="edit" class="btn btn-primary float-right">Edit</button>
                     </form>
-
                 </div>
             </div>
         </div>
