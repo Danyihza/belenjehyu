@@ -56,7 +56,7 @@ class admin extends CI_Controller
         } else {
             $this->admin_model->tambahdata();
             $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect('mainmenu');
+            redirect('admin/mainmenu');
         }
     }
     public function detail($id)
