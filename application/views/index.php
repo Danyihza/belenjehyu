@@ -8,7 +8,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
 
-	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/animate.css">
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/owl.carousel.min.css">
 
@@ -69,7 +69,6 @@
 	</section>
 	<!-- END section -->
 	<!-- <iframe width="300" height="150" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyDaTxK5QF8rmPFs14OG36FomPO1IGKD2rI" allowfullscreen></iframe> -->
-
 	<?php
 	if (!$user) {
 	?>
@@ -81,12 +80,13 @@
 		<p class="heading text-center mb-4" style="font-size: 30px;
 			color: white;
 			font-weight: bold;">Daftar Pedagang</p>
+
 		<?php
 		foreach ($user as $u) :
 		?>
 
-			<div class="card">
-				<div class="warna">
+			<div class="card" data-toggle="modal" data-target="#modal<?= $u['id_pedagang'] ?>">
+				<div class=" warna">
 					<img class="icon" src="<?= base_url('assets/'); ?>images/<?= $u['gambar_kategori']; ?>" width="46px"></div>
 				<div class="tengah">
 					<h3><?= $u['nama_pedagang']; ?></h3>
@@ -95,7 +95,31 @@
 					</a>
 				</div>
 				<div class="kanan">
-					<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
+					<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" onclick="return confirm('Apakah')" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
+				</div>
+			</div>
+
+			<!-- MODAL DETAIL -->
+			<div class="modal fade" id="modal<?= $u['id_pedagang'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalCenterTitle">Detail Pedagang</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<h1><?= $u['nama_pedagang']; ?></h1>
+							<?php if ($u['tempat_pasar'] == 'Pasar Semampir') {
+								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k";
+							}elseif ($u['tempat_pasar'] == 'Pasar Pajarakan') {
+								$maps ="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJfxR6TngA1y0RPGGuVj5oB9U&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k";
+							}
+							?>
+							<iframe width="310" frameborder="0" style="border:1" src="<?= $maps; ?>" allowfullscreen></iframe>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php endforeach; ?>
@@ -124,6 +148,8 @@
 		</div>
 	</footer>
 	<!-- END footer -->
+
+
 
 	<!-- loader -->
 	<div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
