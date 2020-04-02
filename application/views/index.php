@@ -76,14 +76,18 @@
 		<p class="heading text-center mb-4" style="font-size: 30px;
 			color: white;
 			font-weight: bold;">Data Tidak Ditemukan</p>
+	<?php
+	} else { ?>
+		<p class="heading text-center mb-4" style="font-size: 30px;
+			color: white;
+			font-weight: bold;">Daftar Pedagang</p>
 		<?php
-	} else {
 		foreach ($user as $u) :
 		?>
-			
+
 			<div class="card">
 				<div class="warna">
-					<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
+					<img class="icon" src="<?= base_url('assets/'); ?>images/<?= $u['gambar_kategori']; ?>" width="46px"></div>
 				<div class="tengah">
 					<h3><?= $u['nama_pedagang']; ?></h3>
 					<a href="tel:<?= $u['kontak_pedagang'] ?>">

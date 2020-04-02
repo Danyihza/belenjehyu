@@ -19,9 +19,9 @@ class admin extends CI_Controller
         if ($user) {
             if ($this->db->query("SELECT * FROM admin WHERE password ='$pwd'")->row_array()) {
                 $data = $user['username'];
-                $this->session->set_userdata('nama',$data);
+                $this->session->set_userdata('nama', $data);
                 redirect('admin/mainmenu');
-            }else{
+            } else {
                 redirect('admin');
             }
         }
@@ -81,8 +81,16 @@ class admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('kontak', 'Kontak', 'required|numeric');
         $this->form_validation->set_rules('tempat', 'Tempat', 'required');
-        $data['kategori'] = $this->admin_model->getAllKategori($id);
-        $data['pedagang'] = $this->admin_model->editdataById($id);
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $nama = $this->input->post('nama');
+        $kontak = $this->input->post('kontak');
+        $tempat = $this->input->post('tempat');
+        $kategori = $this->input->post('kategori');
+        $data['kategori'] = $this->db->query("SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori AND id_pedagang='$id'")->row_array();
+        $data['user'] = $this->db->query("SELECT id_kategori,nama_kategori FROM kategori EXCEPT SELECT id_kategori,nama_kategori FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori AND id_pedagang='$id'")->result_array();
+        // $data['user'] = $this->db->query("SELECT * FROM kategori")->result_array();
+        $data['pedagang'] = $this->db->query("SELECT * FROM pedagang  WHERE id_pedagang='$id'")->row_array();
+
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('vendor/header', $data);
             $this->load->view('vendor/sidebar');
@@ -90,9 +98,10 @@ class admin extends CI_Controller
             $this->load->view('admin/editdata');
             $this->load->view('vendor/footer');
         } else {
-            $this->admin_model->editdataById($id);
+            $this->db->query("UPDATE pedagang SET nama_pedagang='$nama', kontak_pedagang='$kontak', tempat_pasar='$tempat', kategori='$kategori' 
+            WHERE id_pedagang='$id'");
             $this->session->set_flashdata('flash', 'Diedit');
-            redirect('admin');
+            redirect('admin/mainmenu');
         }
     }
 }

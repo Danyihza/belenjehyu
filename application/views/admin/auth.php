@@ -2,7 +2,8 @@
 <html>
 
 <head>
-	<title>Animated Login Form</title>
+	<title>Login Admin</title>
+	<link rel="icon" href="<?= base_url('assets/'); ?>images/avatar.svg" type="image/icon type">
 	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>css/auth.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -16,7 +17,7 @@
 			<img src="<?= base_url('assets/'); ?>images/bg.svg">
 		</div>
 		<div class="login-content">
-			<form action="<?= base_url('admin'); ?>" method="post">
+			<form action="" method="post">
 				<img src="<?= base_url('assets/'); ?>images/avatar.svg">
 				<h2 class="title">Welcome Admin</h2>
 				<div class="input-div one">
