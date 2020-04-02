@@ -19,9 +19,9 @@ class admin extends CI_Controller
         if ($user) {
             if ($this->db->query("SELECT * FROM admin WHERE password ='$pwd'")->row_array()) {
                 $data = $user['username'];
-                $this->session->set_userdata('nama', $data);
+                $this->session->set_userdata('nama',$data);
                 redirect('admin/mainmenu');
-            } else {
+            }else{
                 redirect('admin');
             }
         }
@@ -75,16 +75,15 @@ class admin extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin');
     }
-    public function dataedit($id)
-    {
+    public function dataedit($id){
         $data['judul'] = 'Edit Data Barang';
         $data['qpedagang'] = $this->admin_model->getPedagangById($id);
         $data['kategori'] = $this->admin_model->getAllKategori($id);
-        $this->load->view('vendor/header', $data);
-        $this->load->view('vendor/sidebar');
-        $this->load->view('vendor/topbar');
-        $this->load->view('admin/editdata', $data);
-        $this->load->view('vendor/footer');
+            $this->load->view('vendor/header', $data);
+            $this->load->view('vendor/sidebar');
+            $this->load->view('vendor/topbar');
+            $this->load->view('admin/editdata', $data);
+            $this->load->view('vendor/footer');
     }
     public function update($id)
     {
@@ -92,11 +91,8 @@ class admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('kontak', 'Kontak', 'required|numeric');
         $this->form_validation->set_rules('tempat', 'Tempat', 'required');
-
-
         $data['qpedagang'] = $this->admin_model->getPedagangById($id);
         $data['kategori'] = $this->admin_model->getAllKategori($id);
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('vendor/header', $data);
             $this->load->view('vendor/sidebar');
@@ -104,24 +100,23 @@ class admin extends CI_Controller
             $this->load->view('admin/editdata');
             $this->load->view('vendor/footer');
         } else {
-
             $nama = $this->input->post('nama');
             $kontak = $this->input->post('kontak');
             $tempat = $this->input->post('tempat');
             $kategori = $this->input->post('kategori');
-
+    
             $data = array(
                 'nama_pedagang' => $nama,
                 'kontak_pedagang' => $kontak,
                 'tempat_pasar' => $tempat,
                 'kategori' => $kategori
-            );
-
+                );
+     
             $where = array(
                 'id_pedagang' => $id
             );
-
-            $this->admin_model->update_data($where, $data, 'pedagang');
+        
+            $this->admin_model->update_data($where,$data,'pedagang');
             redirect('admin/mainmenu');
         }
     }

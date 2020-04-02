@@ -6,12 +6,10 @@ class admin_model extends CI_Model
     public function getAllPedagang(){
         $hasil = $this->db->query("SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori ORDER BY nama_kategori");
         return $hasil->result_array();
-        // return $this->db->get('pedagang')->result_array();
     }
 
     public function getPedagangById($id){
         return $this->db->query("SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori And pedagang.id_pedagang=$id")->row_array();
-        // return $this->db->get('pedagang')->result_array();
     }
 
     public function getAllKategori()
@@ -38,7 +36,7 @@ class admin_model extends CI_Model
     {
         return $this->db->get_where('pedagang', ['id_pedagang' => $id])->row_array();
     }
-    
+
     function update_data($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);

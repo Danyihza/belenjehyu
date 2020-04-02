@@ -26,15 +26,11 @@
                         <div class=" form-group">
                             <label for="kategori">Kategori</label>
                             <select class="form-control" name="kategori" name="kategori">
-
                                 <option value="<?= $qpedagang['id_kategori']; ?>"><?= $qpedagang['nama_kategori']; ?></option>
-
                                 <?php
-                                foreach ($user as $su) :
+                                foreach ($kategori as $su) :
                                 ?>
-
                                     <option value="<?= $su['id_kategori'] ?>"><?= $su['nama_kategori'] ?></option>
-
                                 <?php endforeach ?>
                             </select>
                         </div>
