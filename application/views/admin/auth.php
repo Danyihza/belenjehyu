@@ -26,7 +26,7 @@
 					</div>
 					<div class="div">
 						<h5>Username</h5>
-						<input type="text" name="uname" class="input">
+						<input type="text" name="uname" class="input" required>
 					</div>
 				</div>
 				<div class="input-div pass">
@@ -35,7 +35,7 @@
 					</div>
 					<div class="div">
 						<h5>Password</h5>
-						<input type="password" name="pwd" class="input">
+						<input type="password" name="pwd" class="input" required>
 					</div>
 				</div>
 				<!-- <a href="#">Forgot Password?</a> -->

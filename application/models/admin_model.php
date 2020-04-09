@@ -23,6 +23,8 @@ class admin_model extends CI_Model
             "kontak_pedagang" => $this->input->post('kontak', true),
             "tempat_pasar" => $this->input->post('tempat', true),
             "kategori" => $this->input->post('kategori'),
+            "status_akun" => $this->input->post('status_akun'),
+            "detail_pedagang" => $this->input->post('detail_pedagang'),
 
         ];
         $this->db->insert('pedagang', $data);

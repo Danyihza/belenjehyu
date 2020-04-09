@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class admin extends CI_Controller
+class Admin extends CI_Controller
 {
 
     public function __construct()
@@ -45,6 +45,9 @@ class admin extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('kontak', 'Kontak', 'required|numeric');
         $this->form_validation->set_rules('tempat', 'Tempat', 'required');
+        $this->form_validation->set_rules('kategori', 'Tempat', 'required');
+        $this->form_validation->set_rules('status_akun', 'Status', 'required');
+        $this->form_validation->set_rules('detail_pedagang', 'Detail', 'required');
         $data['kategori'] = $this->admin_model->getAllKategori();
         $data['pedagang'] = $this->admin_model->getAllPedagang();
         if ($this->form_validation->run() == FALSE) {
@@ -54,6 +57,31 @@ class admin extends CI_Controller
             $this->load->view('admin/tambah');
             $this->load->view('vendor/footer');
         } else {
+            $uploadgambar = $_FILES['foto_kios']['name'];
+            if ($uploadgambar) {
+                # code...
+                $config['allowed_types'] = 'jpg|jpeg|png|gif|jfif';
+                $config['max_size'] = '5000';
+                $config['upload_path'] = './assets/images/kios/';
+    
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto_kios')) {
+                    # code...
+                    $img = $this->upload->data('file_name');
+                    $this->db->set('foto_kios', $img);
+                } else {
+                    $this->session->set_flashdata('flash', 
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Data Pedagang Tidak Dapat Tersimpan, Tipe Gambar Tidak Sesuai
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>'
+                );
+                    redirect('admin/tambah');
+                    //echo $this->upload->displays_errors();
+                }
+            }    
             $this->admin_model->tambahdata();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('admin/mainmenu');
@@ -85,12 +113,16 @@ class admin extends CI_Controller
             $this->load->view('admin/editdata', $data);
             $this->load->view('vendor/footer');
     }
-    public function update($id)
+    public function update()
     {
+        $id = $this->input->post('id');
         $data['judul'] = 'BelenjehYu';
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('kontak', 'Kontak', 'required|numeric');
         $this->form_validation->set_rules('tempat', 'Tempat', 'required');
+        $this->form_validation->set_rules('kategori', 'Tempat', 'required');
+        $this->form_validation->set_rules('status_akun', 'Status', 'required');
+        $this->form_validation->set_rules('detail_pedagang', 'Detail', 'required');
         $data['qpedagang'] = $this->admin_model->getPedagangById($id);
         $data['kategori'] = $this->admin_model->getAllKategori($id);
         if ($this->form_validation->run() == FALSE) {
@@ -104,12 +136,42 @@ class admin extends CI_Controller
             $kontak = $this->input->post('kontak');
             $tempat = $this->input->post('tempat');
             $kategori = $this->input->post('kategori');
+            $status = $this->input->post('status_akun');
+            $detail = $this->input->post('detail_pedagang');
+            $uploadgambar = $_FILES['foto_kios']['name'];
+
+            if ($uploadgambar) {
+                # code...
+                $config['allowed_types'] = 'jpg|jpeg|png|gif|jfif';
+                $config['max_size'] = '5000';
+                $config['upload_path'] = './assets/images/kios/';
+    
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto_kios')) {
+                    # code...
+                    $img = $this->upload->data('file_name');
+                    $this->db->set('foto_kios', $img);
+                } else {
+                    $this->session->set_flashdata('flash', 
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Data Pedagang Tidak Dapat Tersimpan, Tipe Gambar Tidak Sesuai
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+                    );
+                    redirect('admin/editdata');
+                    //echo $this->upload->displays_errors();
+                }
+            }
     
             $data = array(
                 'nama_pedagang' => $nama,
                 'kontak_pedagang' => $kontak,
                 'tempat_pasar' => $tempat,
-                'kategori' => $kategori
+                'kategori' => $kategori,
+                'status_akun' => $status,
+                'detail_pedagang' => $detail
                 );
      
             $where = array(
