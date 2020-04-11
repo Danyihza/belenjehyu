@@ -122,9 +122,7 @@
 						<div class="modal-body">
 							<h5><?= $u['nama_pedagang']; ?></h5>
 							<p style="color: #000000;">Detail Pedagang :</p>
-							<textarea class="form-control" id="message-text" disabled>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis maiores, 
-							</textarea>
+							<textarea class="form-control" id="message-text" disabled><?= $u['detail_pedagang'];?></textarea>
 							<?php if ($u['tempat_pasar'] == 'Pasar Semampir') {
 								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k&maptype=satellite&zoom=17";
 							} elseif ($u['tempat_pasar'] == 'Pasar Pajarakan') {
@@ -133,16 +131,16 @@
 							?>
 							<!-- Trigger the Modal -->
 							<br>
-							<center><img id="myImg" src="<?= base_url('assets/'); ?>images/toko/kios1.jpg" alt="Snow" style="width:100%;max-width:250px"></center>
+							<center><img id="myImg" src="<?= base_url('assets/images/kios/'.$u['foto_kios']); ?>" alt="Snow" style="width:100%;max-width:200px"></center>
 							<center>
-								<p style="color: #000000;">KIOS 1</p>
+								<p style="color: #000000; text-transform: uppercase;">KIOS <?= $u['nama_pedagang']?></p>
 							</center>
 							<hr>
 							<center>
 								<h6 style="color: #000000;">MAPS</h6>
 							</center>
 							<!-- <iframe src="https://hargapangan.id/" width="310" frameborder="0" scrolling="auto" allowfullscreen="true"></iframe> -->
-							<iframe width="310" frameborder="0" style="border:1" src="<?= $maps; ?>" allowfullscreen></iframe>
+							<iframe width="100%" frameborder="0" style="border:1" src="<?= $maps; ?>" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>
