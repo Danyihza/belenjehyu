@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>BelenjehYu</title>
-	<meta charset="utf-8">
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.css">
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/animate.css">
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/owl.carousel.min.css">
 
@@ -20,15 +20,13 @@
 	<!-- Theme Style -->
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style.css">
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/mycard.css">
-	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/myimage.css">
-
 </head>
 
 <body>
 
 	<header role="banner">
 
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand absolute" href="<?= base_url('main'); ?>">Belenjehyu</a>
 
@@ -58,12 +56,6 @@
 												<option value="<?= $k['nama_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
 											<?php endforeach; ?>
 										</select>
-										<select name="pasar" id="" class="form-control">
-											<option selected disabled>Pilih Pasar...</option>
-											<?php foreach ($pasar as $p) : ?>
-												<option value="<?= $p['tempat_pasar']; ?>"><?= $p['tempat_pasar']; ?></option>
-											<?php endforeach; ?>
-										</select>
 									</div>
 								</div>
 								<input type="submit" class="search-submit btn btn-primary" value="Cari">
@@ -76,79 +68,26 @@
 		</div>
 	</section>
 	<!-- END section -->
-	<!-- <iframe width="300" height="150" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyDaTxK5QF8rmPFs14OG36FomPO1IGKD2rI" allowfullscreen></iframe> -->
+	<p class="heading text-center mb-4" style="font-size: 30px;
+  color: white;
+  font-weight: bold;">Daftar Pedagang</p>
 	<?php
-	if (!$user) {
+	foreach ($user as $u) :
 	?>
-		<p class="heading text-center mb-4" style="font-size: 30px;
-			color: white;
-			font-weight: bold;">Data Tidak Ditemukan</p>
-	<?php
-	} else { ?>
-		<p class="heading text-center mb-4" style="font-size: 30px;
-			color: white;
-			font-weight: bold;">Daftar Pedagang</p>
-
-		<?php
-		foreach ($user as $u) :
-		?>
-
-			<div class="card" data-toggle="modal" data-target="#modal<?= $u['id_pedagang'] ?>">
-				<div class=" warna">
-					<img class="icon" src="<?= base_url('assets/'); ?>images/<?= $u['gambar_kategori']; ?>" width="46px"></div>
-				<div class="tengah">
-					<h3><?= $u['nama_pedagang']; ?></h3>
-					<a href="tel:<?= $u['kontak_pedagang'] ?>">
-						<p><?= $u['kontak_pedagang']; ?></p>
-					</a>
-				</div>
-				<div class="kanan">
-					<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" onclick="return confirm('Apakah')" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
-				</div>
+		<div class="card">
+			<div class="warna">
+				<img class="daging" src="<?= base_url('assets/'); ?>images/daging.png" width="46px"></div>
+			<div class="tengah">
+				<h3><?= $u['nama_pedagang']; ?></h3>
+				<a href="tel:<?= $u['kontak_pedagang'] ?>" target="_blank">
+					<p><?= $u['kontak_pedagang']; ?></p>
+				</a>
 			</div>
-
-			<!-- MODAL DETAIL -->
-			<div class="modal fade" id="modal<?= $u['id_pedagang'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-scrollable" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="exampleModalCenterTitle">Detail Pedagang</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<h5><?= $u['nama_pedagang']; ?></h5>
-							<p style="color: #000000;">Detail Pedagang :</p>
-							<textarea class="form-control" id="message-text" disabled>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis maiores, 
-							</textarea>
-							<?php if ($u['tempat_pasar'] == 'Pasar Semampir') {
-								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k&maptype=satellite&zoom=17";
-							} elseif ($u['tempat_pasar'] == 'Pasar Pajarakan') {
-								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJfxR6TngA1y0RPGGuVj5oB9U&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k&maptype=satellite&zoom=18";
-							}
-							?>
-							<!-- Trigger the Modal -->
-							<br>
-							<center><img id="myImg" src="<?= base_url('assets/'); ?>images/toko/kios1.jpg" alt="Snow" style="width:100%;max-width:250px"></center>
-							<center>
-								<p style="color: #000000;">KIOS 1</p>
-							</center>
-							<hr>
-							<center>
-								<h6 style="color: #000000;">MAPS</h6>
-							</center>
-							<!-- <iframe src="https://hargapangan.id/" width="310" frameborder="0" scrolling="auto" allowfullscreen="true"></iframe> -->
-							<iframe width="310" frameborder="0" style="border:1" src="<?= $maps; ?>" allowfullscreen></iframe>
-						</div>
-					</div>
-				</div>
+			<div class="kanan">
+				<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
 			</div>
-
-
-		<?php endforeach; ?>
-	<?php } ?>
+		</div>
+	<?php endforeach; ?>
 	<hr>
 	<footer class="site-footer">
 		<div class="container">
@@ -168,20 +107,11 @@
 						<a href="https://www.facebook.com/fahrizal.firdaus.129?sk=wall" class="fa fa-facebook p-2"></a>
 						<a href="https://www.instagram.com/ikirizal_/" class="fa fa-instagram p-2"></a>
 					</p>
-					<!-- hitwebcounter Code START -->
-					<a href="https://www.hitwebcounter.com" target="_blank">
-						<img src="https://hitwebcounter.com/counter/counter.php?page=7221949&style=0007&nbdigits=5&type=page&initCount=0" title="User Stats" Alt="PHP Hits Count" border="0">
-					</a>
-					<!-- Start of WebFreeCounter Code -->
-					<a target="_blank"><img src="https://www.webfreecounter.com/hit.php?id=gukqxco&nd=1&style=71" border="0" alt="visitor counter"></a>
-					<!-- End of WebFreeCounter Code -->
 				</div>
 			</div>
 		</div>
 	</footer>
 	<!-- END footer -->
-
-
 
 	<!-- loader -->
 	<div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
@@ -200,7 +130,6 @@
 	<script src="<?= base_url('assets/'); ?>js/jquery.magnific-popup.min.js"></script>
 
 	<script src="<?= base_url('assets/'); ?>js/main.js"></script>
-
 </body>
 
 </html>
