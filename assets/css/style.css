@@ -574,7 +574,7 @@ header .navbar.navbar-light .nav-link.active {
 }
 
 textarea.form-control {
-  height: inherit;
+  height: 263px;
 }
 
 .btn {

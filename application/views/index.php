@@ -20,6 +20,8 @@
 	<!-- Theme Style -->
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style.css">
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/mycard.css">
+	<link rel="stylesheet" href="<?= base_url('assets/'); ?>css/myimage.css">
+
 </head>
 
 <body>
@@ -54,6 +56,12 @@
 											<option selected disabled>Pilih Kategori...</option>
 											<?php foreach ($kategori as $k) : ?>
 												<option value="<?= $k['nama_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
+											<?php endforeach; ?>
+										</select>
+										<select name="pasar" id="" class="form-control">
+											<option selected disabled>Pilih Pasar...</option>
+											<?php foreach ($pasar as $p) : ?>
+												<option value="<?= $p['tempat_pasar']; ?>"><?= $p['tempat_pasar']; ?></option>
 											<?php endforeach; ?>
 										</select>
 									</div>
@@ -103,27 +111,44 @@
 
 			<!-- MODAL DETAIL -->
 			<div class="modal fade" id="modal<?= $u['id_pedagang'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-dialog modal-dialog-scrollable" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalCenterTitle">Detail Pedagang</h5>
+							<h4 class="modal-title" id="exampleModalCenterTitle">Detail Pedagang</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<h1><?= $u['nama_pedagang']; ?></h1>
+							<h5><?= $u['nama_pedagang']; ?></h5>
+							<p style="color: #000000;">Detail Pedagang :</p>
+							<textarea class="form-control" id="message-text" disabled>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis maiores, 
+							</textarea>
 							<?php if ($u['tempat_pasar'] == 'Pasar Semampir') {
-								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k";
-							}elseif ($u['tempat_pasar'] == 'Pasar Pajarakan') {
-								$maps ="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJfxR6TngA1y0RPGGuVj5oB9U&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k";
+								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k&maptype=satellite&zoom=17";
+							} elseif ($u['tempat_pasar'] == 'Pasar Pajarakan') {
+								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJfxR6TngA1y0RPGGuVj5oB9U&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k&maptype=satellite&zoom=18";
 							}
 							?>
+							<!-- Trigger the Modal -->
+							<br>
+							<center><img id="myImg" src="<?= base_url('assets/'); ?>images/toko/kios1.jpg" alt="Snow" style="width:100%;max-width:250px"></center>
+							<center>
+								<p style="color: #000000;">KIOS 1</p>
+							</center>
+							<hr>
+							<center>
+								<h6 style="color: #000000;">MAPS</h6>
+							</center>
+							<!-- <iframe src="https://hargapangan.id/" width="310" frameborder="0" scrolling="auto" allowfullscreen="true"></iframe> -->
 							<iframe width="310" frameborder="0" style="border:1" src="<?= $maps; ?>" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 		<?php endforeach; ?>
 	<?php } ?>
 
@@ -212,6 +237,13 @@
 						<a href="https://www.facebook.com/fahrizal.firdaus.129?sk=wall" class="fa fa-facebook p-2"></a>
 						<a href="https://www.instagram.com/ikirizal_/" class="fa fa-instagram p-2"></a>
 					</p>
+					<!-- hitwebcounter Code START -->
+					<a href="https://www.hitwebcounter.com" target="_blank">
+						<img src="https://hitwebcounter.com/counter/counter.php?page=7221949&style=0007&nbdigits=5&type=page&initCount=0" title="User Stats" Alt="PHP Hits Count" border="0">
+					</a>
+					<!-- Start of WebFreeCounter Code -->
+					<a target="_blank"><img src="https://www.webfreecounter.com/hit.php?id=gukqxco&nd=1&style=71" border="0" alt="visitor counter"></a>
+					<!-- End of WebFreeCounter Code -->
 				</div>
 			</div>
 		</div>
@@ -237,6 +269,7 @@
 	<script src="<?= base_url('assets/'); ?>js/jquery.magnific-popup.min.js"></script>
 
 	<script src="<?= base_url('assets/'); ?>js/main.js"></script>
+
 </body>
 
 </html>
