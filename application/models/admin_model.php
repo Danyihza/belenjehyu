@@ -7,7 +7,10 @@ class admin_model extends CI_Model
         $hasil = $this->db->query("SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori ORDER BY nama_kategori");
         return $hasil->result_array();
     }
-
+    public function getAllPedagang2(){
+        $hasil = $this->db->query("SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori ORDER BY id_pedagang desc");
+        return $hasil->result_array();
+    }
     public function getPedagangById($id){
         return $this->db->query("SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori And pedagang.id_pedagang=$id")->row_array();
     }

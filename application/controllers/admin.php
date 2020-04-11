@@ -31,7 +31,7 @@ class Admin extends CI_Controller
     public function mainmenu()
     {
         $data['judul'] = 'BelenjehYu';
-        $data['pedagang'] = $this->admin_model->getAllPedagang();
+        $data['pedagang'] = $this->admin_model->getAllPedagang2();
         $this->load->view('vendor/header', $data);
         $this->load->view('vendor/sidebar');
         $this->load->view('vendor/topbar');
