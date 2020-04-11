@@ -194,7 +194,7 @@ class Admin extends CI_Controller
         $data['kategori'] = $this->admin_model->getAllKategori();
         $data['pedagang'] = $this->admin_model->getAllPedagang();
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('index', $data);
+            $this->load->view('daftar', $data);
         } else {
             $uploadgambar = $_FILES['foto_kios']['name'];
             if ($uploadgambar) {
@@ -217,7 +217,7 @@ class Admin extends CI_Controller
                 </button>
                 </div>'
                 );
-                    redirect('main');
+                    redirect('main/daftar');
                     //echo $this->upload->displays_errors();
                 }
             }    

@@ -34,4 +34,9 @@ class Main extends CI_Controller
 			$this->session->set_flashdata('flash', 'Daftar Pedangang');
 		}
 	}
+
+	public function fdaftar(){
+		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
+		$this->load->view('daftar', $data);
+	}
 }

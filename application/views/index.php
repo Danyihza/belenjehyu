@@ -68,7 +68,7 @@
 								</div>
 								<input type="submit" class="search-submit btn btn-primary" value="Cari">
 								<hr>
-								<input type="button" class="search-submit btn btn-primary" value="Pendaftaran Pedagang" data-toggle="modal" data-target="#daftar">
+								<a href="<?= base_url('main/fdaftar');?>"><button type="button" class="search-submit btn btn-primary">Pendaftaran Pedagang</button></a>
 							</form>
 						</div>
 					</div>
@@ -150,72 +150,6 @@
 		<?php endforeach; ?>
 	<?php } ?>
 
-	<!-- Modal Daftar -->
-	<div class="modal fade" id="daftar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalCenterTitle">Form Pendaftaran</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p class="modal-title text-danger" id="exampleModalCenterTitle">Form ini ditujukan untuk pengambilan data yang ditujukan untuk pembuatan pasar online berbasis WhatsApp dan Telepon</p>
-							<hr>
-							<?= form_open_multipart('admin/daftar'); ?>    
-								<div class="form-group">
-									<input type="text" class="form-control" name="nama" placeholder="Nama Pedagang/Toko">
-									<small class="form-text text-danger ">
-										<?= form_error('nama'); ?></small>
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control" name="kontak" maxlength="13" placeholder="Nomor Telepon">
-									<small class="form-text text-danger">
-										<?= form_error('kontak'); ?></small>
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control" name="tempat" value="Pasar Semampir" readonly>
-									<small class="form-text text-danger ">
-										<?= form_error('tempat'); ?></small></div>
-								<div class="form-group">
-									<select class="form-control" id="kategori" name="kategori">
-										<option selected disabled>--Kategori--</option>
-										<?php
-										foreach ($kategori as $su) :
-										?>
-											<option value="<?= $su['id_kategori'] ?>">
-												<?= $su['nama_kategori'] ?>
-											</option>
-										<?php endforeach ?>
-									</select>
-									<small class="form-text text-danger ">
-										<?= form_error('kategori'); ?></small>
-								</div>
-								<div class="form-group">
-									<select class="form-control" id="status" name="status_akun">
-										<option selected disabled>--Status WhatsApp--</option>
-										<option value="1">Ada</option>
-										<option value="0">Tidak Ada</option>
-									</select>
-									<small class="form-text text-danger ">
-										<?= form_error('status_akun'); ?></small>
-								</div>
-								<div class="form-group">
-									<textarea type="text" class="form-control" name="detail_pedagang" placeholder="Detail Dagangan"></textarea>
-									<small class="form-text text-danger ">
-										<?= form_error('detail_pedagang'); ?></small>
-								</div>
-								<div class="form-group">
-									<h5>Foto Kios</h5>
-									<input type="file" class="form-control" name="foto_kios" placeholder="Foto Kios">
-								</div>
-								<button type="submit" name="tambah" class="btn btn-primary float-right">Daftar</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
 	<hr>
 	<footer class="site-footer">
 		<div class="container">
