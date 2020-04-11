@@ -34,10 +34,23 @@ class admin_model extends CI_Model
         ];
         $this->db->insert('pedagang', $data);
     }
+    public function tambahkat()
+    {
+        $data = [
+            "nama_kategori" => $this->input->post('nama_kategori')
+        ];
+        $this->db->insert('kategori', $data);
+    }
+
     public function hapusdata($id)
     {
         $this->db->where('id_pedagang', $id);
         $this->db->delete('pedagang');
+    }
+    public function hapuskat($id)
+    {
+        $this->db->where('id_kategori', $id);
+        $this->db->delete('kategori');
     }
     public function getDetailById($id)
     {

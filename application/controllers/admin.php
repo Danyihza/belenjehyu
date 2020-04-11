@@ -38,6 +38,55 @@ class Admin extends CI_Controller
         $this->load->view('admin/index');
         $this->load->view('vendor/footer');
     }
+    public function kategori()
+    {
+        $data['judul'] = 'BelenjehYu';
+        $data['kategori'] = $this->admin_model->getAllKategori();
+        $this->load->view('vendor/header', $data);
+        $this->load->view('vendor/sidebar');
+        $this->load->view('vendor/topbar');
+        $this->load->view('admin/kategori');
+        $this->load->view('vendor/footer');
+    }
+    public function tambahkat()
+    {
+        $uploadgambar = $_FILES['gambar_kategori']['name'];
+            if ($uploadgambar) {
+                # code...
+                $config['allowed_types'] = 'jpg|jpeg|png|gif|jfif';
+                $config['max_size'] = '5000';
+                $config['upload_path'] = './assets/images/';
+    
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('gambar_kategori')) {
+                    # code...
+                    $img = $this->upload->data('file_name');
+                    $this->db->set('gambar_kategori', $img);
+                } else {
+                    $this->session->set_flashdata('flash', 
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Data Pedagang Tidak Dapat Tersimpan, Tipe Gambar Tidak Sesuai
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+                    );
+                    redirect('admin/kategori');
+                    //echo $this->upload->displays_errors();
+                }
+            $this->admin_model->tambahkat();
+            $this->session->set_flashdata('flash', 
+            '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Data Kategori Berhasil Ditambahkan
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+            );
+            redirect('admin/kategori');
+        }
+    }
+    
 
     public function tambah()
     {
@@ -102,6 +151,19 @@ class Admin extends CI_Controller
         $this->admin_model->hapusdata($id);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/mainmenu');
+    }
+    public function hapuskat($id)
+    {
+        $this->admin_model->hapuskat($id);
+        $this->session->set_flashdata('flash', 
+        '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Data Kategori Berhasil Dihapus
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+        );
+        redirect('admin/kategori');
     }
     public function dataedit($id){
         $data['judul'] = 'Edit Data Barang';

@@ -17,10 +17,15 @@
     </div>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="<?= base_url('admin/mainmenu'); ?>">
             <i class="fas fa-home"></i>
             <span>Home</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('admin/kategori'); ?>">
+            <i class="fas fa-list"></i>
+            <span>Kategori</span></a>
     </li>
 
     <!-- Divider -->
