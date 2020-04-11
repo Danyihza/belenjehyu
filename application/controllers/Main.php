@@ -6,11 +6,10 @@ class Main extends CI_Controller
 
 	public function index()
 	{
-		$data['user'] = $this->db->query('SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori ORDER BY kategori.nama_kategori ASC')->result_array();
+		$data['user'] = $this->db->query('SELECT * FROM pedagang INNER JOIN kategori WHERE pedagang.kategori = kategori.id_kategori  AND pedagang.keterangan=1 ORDER BY kategori.nama_kategori ASC')->result_array();
 		$data['kategori'] = $this->db->query('SELECT * FROM kategori')->result_array();
 		$this->load->view('index', $data);
 	}
-
 
 	public function cari()
 	{

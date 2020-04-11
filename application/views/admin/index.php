@@ -28,6 +28,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th scope="col">Action</th>
+                    <th scope="col">Validasi</th>
                     <th scope="col">No</th>
                     <th scope="col">Foto Kios</th>
                     <th scope="col">Nama</th>
@@ -52,6 +53,13 @@
                         </a>
                         <a href=" <?= base_url() ?>admin/hapus/<?= $su['id_pedagang'] ?>" class="badge badge-danger" onclick="return confirm('Yakin anda ingin menghapus?');">Hapus
                         </a>
+                    </td>
+                    <td>
+                    <?php if($su['keterangan']==0){?>
+                        <a href="<?= base_url() ?>admin/valid/<?= $su['id_pedagang'] ?>" class="badge badge-danger">Tidak Valid
+                    <?php }else{ ?>
+                        <a href="<?= base_url() ?>admin/nvalid/<?= $su['id_pedagang'] ?>" class="badge badge-success">Valid
+                    <?php } ?>     
                     </td>
                     <th scope="row"><?= $no++ ?></th>
                     <td align="center"><img width=64 src="<?= base_url('assets/images/kios/'.$su['foto_kios']); ?>"></td>

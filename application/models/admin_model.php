@@ -18,6 +18,7 @@ class admin_model extends CI_Model
     }
     public function tambahdata()
     {
+        $keterangan=0;
         $data = [
             "nama_pedagang" => $this->input->post('nama', true),
             "kontak_pedagang" => $this->input->post('kontak', true),
@@ -25,6 +26,7 @@ class admin_model extends CI_Model
             "kategori" => $this->input->post('kategori'),
             "status_akun" => $this->input->post('status_akun'),
             "detail_pedagang" => $this->input->post('detail_pedagang'),
+            "keterangan" => $keterangan
 
         ];
         $this->db->insert('pedagang', $data);
