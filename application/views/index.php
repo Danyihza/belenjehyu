@@ -5,6 +5,8 @@
 	<title>BelenjehYu</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Sweet Alert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
 
@@ -68,7 +70,7 @@
 								</div>
 								<input type="submit" class="search-submit btn btn-primary" value="Cari">
 								<hr>
-								<a href="<?= base_url('main/fdaftar');?>"><button type="button" class="search-submit btn btn-primary">Pendaftaran Pedagang</button></a>
+								<a href="<?= base_url('main/fdaftar'); ?>"><button type="button" class="search-submit btn btn-primary">Pendaftaran Pedagang</button></a>
 							</form>
 						</div>
 					</div>
@@ -95,8 +97,8 @@
 		foreach ($user as $u) :
 		?>
 
-			<div class="card" data-toggle="modal" data-target="#modal<?= $u['id_pedagang'] ?>">
-				<div class=" warna">
+			<div class="card">
+				<div class=" warna" data-toggle="modal" data-target="#modal<?= $u['id_pedagang'] ?>">
 					<img class="icon" src="<?= base_url('assets/'); ?>images/<?= $u['gambar_kategori']; ?>" width="46px"></div>
 				<div class="tengah">
 					<h3><?= $u['nama_pedagang']; ?></h3>
@@ -105,7 +107,12 @@
 					</a>
 				</div>
 				<div class="kanan">
-					<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" onclick="return confirm('Apakah')" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
+					<?php if ($u['status_akun'] == 1) { ?>
+						<!-- <a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" onclick="return confirm('Aksi ini akan membuka WhatsApp anda dan akan melakukan chat kepada pedagang, Apakah Anda Yakin ?')" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a> -->
+						<a href="https://wa.me/62<?= $u['kontak_pedagang'] ?>?text=Halo+<?= $u['nama_pedagang'] ?>+%0D%0ASaya+ingin+membeli+sesuatu+di+toko+anda"><img class="whatsapp" onclick="return konfirm()" src="<?= base_url('assets/'); ?>images/whatsapp.png" width="46px"></a>
+					<?php } else { ?>
+						<img src="<?= base_url('assets/'); ?>images/nowhatsapp.png" width="46px" onclick="konfirm1()">
+					<?php } ?>
 				</div>
 			</div>
 
@@ -122,7 +129,7 @@
 						<div class="modal-body">
 							<h5><?= $u['nama_pedagang']; ?></h5>
 							<p style="color: #000000;">Detail Pedagang :</p>
-							<textarea class="form-control" id="message-text" disabled><?= $u['detail_pedagang'];?></textarea>
+							<textarea class="form-control" id="message-text" disabled><?= $u['detail_pedagang']; ?></textarea>
 							<?php if ($u['tempat_pasar'] == 'Pasar Semampir') {
 								$maps = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJM4kz1EIA1y0RkqgESViu2k0&key=AIzaSyCoI1l6XyZhqEHPrKTRbkx60HLm_Lj4w2k&maptype=satellite&zoom=17";
 							} elseif ($u['tempat_pasar'] == 'Pasar Pajarakan') {
@@ -131,9 +138,9 @@
 							?>
 							<!-- Trigger the Modal -->
 							<br>
-							<center><img id="myImg" src="<?= base_url('assets/images/kios/'.$u['foto_kios']); ?>" alt="Snow" style="width:100%;max-width:200px"></center>
+							<center><img id="myImg" src="<?= base_url('assets/images/kios/' . $u['foto_kios']); ?>" alt="Snow" style="width:100%;max-width:200px"></center>
 							<center>
-								<p style="color: #000000; text-transform: uppercase;">KIOS <?= $u['nama_pedagang']?></p>
+								<p style="color: #000000; text-transform: uppercase;">KIOS <?= $u['nama_pedagang'] ?></p>
 							</center>
 							<hr>
 							<center>
@@ -170,11 +177,11 @@
 						<a href="https://www.instagram.com/ikirizal_/" class="fa fa-instagram p-2"></a>
 					</p>
 					<!-- hitwebcounter Code START -->
-					<a href="https://www.hitwebcounter.com" target="_blank">
+					<!-- <a href="https://www.hitwebcounter.com" target="_blank">
 						<img src="https://hitwebcounter.com/counter/counter.php?page=7221949&style=0007&nbdigits=5&type=page&initCount=0" title="User Stats" Alt="PHP Hits Count" border="0">
-					</a>
+					</!-->
 					<!-- Start of WebFreeCounter Code -->
-					<a target="_blank"><img src="https://www.webfreecounter.com/hit.php?id=gukqxco&nd=1&style=71" border="0" alt="visitor counter"></a>
+					<!-- <a target="_blank"><img src="https://www.webfreecounter.com/hit.php?id=gukqxco&nd=1&style=71" border="0" alt="visitor counter"></!-->
 					<!-- End of WebFreeCounter Code -->
 				</div>
 			</div>
@@ -201,6 +208,46 @@
 	<script src="<?= base_url('assets/'); ?>js/jquery.magnific-popup.min.js"></script>
 
 	<script src="<?= base_url('assets/'); ?>js/main.js"></script>
+
+	<script>
+		function konfirm1(){
+		Swal.fire({
+			icon: 'error',
+			title: 'Maaf...',
+			text: 'Pedagang ini belum tersedia WhatsApp silahkan tekan nomor telepon untuk melakukan panggilan',
+		}) }
+	</script>
+
+	<script>
+		function konfirm() {
+			let timerInterval
+			Swal.fire({
+				title: 'Membuka WhatsApp...',
+				timer: 2500,
+				timerProgressBar: true,
+				onBeforeOpen: () => {
+					Swal.showLoading()
+					timerInterval = setInterval(() => {
+						const content = Swal.getContent()
+						if (content) {
+							const b = content.querySelector('b')
+							if (b) {
+								b.textContent = Swal.getTimerLeft()
+							}
+						}
+					}, 100)
+				},
+				onClose: () => {
+					clearInterval(timerInterval)
+				}
+			}).then((result) => {
+				/* Read more about handling dismissals below */
+				if (result.dismiss === Swal.DismissReason.timer) {
+					console.log('I was closed by the timer')
+				}
+			})
+		}
+	</script>
 
 </body>
 
